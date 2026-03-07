@@ -21,7 +21,7 @@ export function FunctionBadge({
   label,
   variant = 'info',
   icon,
-}: FunctionBadgeProps): JSX.Element {
+}: FunctionBadgeProps): React.JSX.Element {
   const ariaLabel = `${VARIANT_LABELS[variant]}: ${label}`;
 
   return (
