@@ -1,0 +1,126 @@
+{
+  "version.label": {
+    "message": "Actual",
+    "description": "The label for version current"
+  },
+  "sidebar.docsSidebar.category.platform-getting-started": {
+    "message": "Primeros Pasos",
+    "description": "The label for category 'Getting Started' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Build": {
+    "message": "Construir",
+    "description": "The label for category 'Build' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Applications": {
+    "message": "Aplicaciones",
+    "description": "The label for category 'Applications' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Functions": {
+    "message": "Functions",
+    "description": "The label for category 'Functions' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Overview": {
+    "message": "Descripción General",
+    "description": "The label for category 'Overview' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Architecture": {
+    "message": "Arquitectura",
+    "description": "The label for category 'Architecture' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.functions-getting-started": {
+    "message": "Primeros Pasos",
+    "description": "The label for category 'Getting Started' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Development": {
+    "message": "Desarrollo",
+    "description": "The label for category 'Development' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Function Instances": {
+    "message": "Instancias de Function",
+    "description": "The label for category 'Function Instances' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Integration": {
+    "message": "Integración",
+    "description": "The label for category 'Integration' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Observability": {
+    "message": "Observabilidad",
+    "description": "The label for category 'Observability' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Advanced Topics": {
+    "message": "Temas Avanzados",
+    "description": "The label for category 'Advanced Topics' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Runtime Reference": {
+    "message": "Referencia de Runtime",
+    "description": "The label for category 'Runtime Reference' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Edge Storage": {
+    "message": "Edge Storage",
+    "description": "The label for category 'Edge Storage' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Databases": {
+    "message": "Bases de Datos",
+    "description": "The label for category 'Databases' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.AI": {
+    "message": "IA",
+    "description": "The label for category 'AI' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Deliver": {
+    "message": "Entregar",
+    "description": "The label for category 'Deliver' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Secure": {
+    "message": "Proteger",
+    "description": "The label for category 'Secure' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.WAF": {
+    "message": "WAF",
+    "description": "The label for category 'WAF' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Bot Protection": {
+    "message": "Protección contra Bots",
+    "description": "The label for category 'Bot Protection' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.DDoS Protection": {
+    "message": "Protección DDoS",
+    "description": "The label for category 'DDoS Protection' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Observe": {
+    "message": "Observar",
+    "description": "The label for category 'Observe' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Network": {
+    "message": "Red",
+    "description": "The label for category 'Network' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Management": {
+    "message": "Gestión",
+    "description": "The label for category 'Management' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.CLI": {
+    "message": "CLI",
+    "description": "The label for category 'CLI' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.API": {
+    "message": "API",
+    "description": "The label for category 'API' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Terraform": {
+    "message": "Terraform",
+    "description": "The label for category 'Terraform' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Reference": {
+    "message": "Referencia",
+    "description": "The label for category 'Reference' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.doc.Platform Overview": {
+    "message": "Descripción General de la Plataforma",
+    "description": "The label for the doc item 'Platform Overview' in sidebar 'docsSidebar', linking to the doc platform-overview"
+  },
+  "sidebar.docsSidebar.doc.Architecture": {
+    "message": "Arquitectura",
+    "description": "The label for the doc item 'Architecture' in sidebar 'docsSidebar', linking to the doc architecture"
+  }
+}
