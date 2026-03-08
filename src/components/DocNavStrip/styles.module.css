@@ -14,14 +14,16 @@
 }
 
 .next {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .prev a,
 .next a {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.4rem;
+  min-width: 0;
   color: var(--ifm-color-primary);
   text-decoration: none;
   transition: opacity 0.15s ease;
@@ -39,9 +41,8 @@
 }
 
 .label {
-  /* truncate long titles */
-  max-width: 280px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }

@@ -106,6 +106,34 @@ code, pre, kbd, samp, .prism-code {
   margin-bottom: 0.8rem;
 }
 
+/* On mobile, prevent the last breadcrumb item (current page) from wrapping to a
+ * second line. It's safe to truncate because the user is already on that page. */
+@media (max-width: 996px) {
+  .theme-doc-breadcrumbs .breadcrumbs--collapsed {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    --ifm-breadcrumb-spacing: 0.3rem;
+  }
+
+  .theme-doc-breadcrumbs .breadcrumbs--collapsed .breadcrumbs__item:not(.breadcrumbs__item--active) {
+    flex-shrink: 0;
+  }
+
+  .theme-doc-breadcrumbs .breadcrumbs--collapsed .breadcrumbs__item--active {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .theme-doc-breadcrumbs .breadcrumbs--collapsed .breadcrumbs__item--active .breadcrumbs__link {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 /* Reset button appearance for the ellipsis expander and add hover to match links */
 .breadcrumbs__ellipsis {
   background: none;

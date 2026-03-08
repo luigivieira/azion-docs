@@ -104,7 +104,7 @@ function DocBreadcrumbs(): ReactNode {
           message: 'Breadcrumbs',
           description: 'The ARIA label for the breadcrumbs',
         })}>
-        <ul className="breadcrumbs">
+        <ul className={clsx('breadcrumbs', {'breadcrumbs--collapsed': shouldCollapse})}>
           <HomeBreadcrumbItem />
           {itemsToRender.map((item, idx) => {
             if (item === null) {
