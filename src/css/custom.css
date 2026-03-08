@@ -1,20 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Azion Documentation — custom theme
+ * Primary palette: Azion orange
+ * Body: Inter | Code: JetBrains Mono (ligatures disabled)
  */
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Azion orange — light mode (darkened for WCAG AA contrast on white) */
+  --ifm-color-primary: #c84415;
+  --ifm-color-primary-dark: #b33c13;
+  --ifm-color-primary-darker: #a83811;
+  --ifm-color-primary-darkest: #8c2f0e;
+  --ifm-color-primary-light: #d95018;
+  --ifm-color-primary-lighter: #e05820;
+  --ifm-color-primary-lightest: #f3652b;
+
+  /* Typography */
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.75;
+
+  /* Heading hierarchy */
+  --ifm-heading-font-weight: 700;
+  --ifm-h1-font-size: 2.25rem;
+  --ifm-h2-font-size: 1.6rem;
+  --ifm-h3-font-size: 1.2rem;
+  --ifm-h4-font-size: 1rem;
+  --ifm-h5-font-size: 0.9rem;
+
+  /* Code blocks */
+  --ifm-code-font-size: 90%;
+  --docusaurus-highlighted-code-line-bg: rgba(200, 68, 21, 0.12);
+}
+
+/* Disable ligatures — legibility over aesthetics */
+code, pre, kbd, samp, .prism-code {
+  font-variant-ligatures: none;
 }
 
 .navbar__logo {
@@ -22,14 +45,63 @@
   align-items: center;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Sidebar — focus on active section
+ *
+ * When a page is active inside a nested section, items outside that section recede.
+ * Skips entirely when the active page is at root level (e.g. the home page),
+ * avoiding the case where everything dims immediately on landing.
+ *
+ * Uses :has() — supported in all modern browsers.
+ * Docusaurus v3: category headers live inside .menu__list-item-collapsible,
+ * not as direct children of the li — both targets are handled explicitly.
+ */
+
+/* Condição: só aplica quando o item ativo NÃO está no nível raiz do menu */
+
+/* Esmaece links de página que não fazem parte da seção ativa */
+.theme-doc-sidebar-menu:not(:has(> .menu__list-item > .menu__link--active))
+  .menu__list-item:not(:has(.menu__link--active))
+  > .menu__link {
+  opacity: 0.58;
+  transition: opacity 0.15s ease;
+}
+
+/* Esmaece headers de categoria (estão dentro de .menu__list-item-collapsible) */
+.theme-doc-sidebar-menu:not(:has(> .menu__list-item > .menu__link--active))
+  .menu__list-item:not(:has(.menu__link--active))
+  > .menu__list-item-collapsible {
+  opacity: 0.58;
+  transition: opacity 0.15s ease;
+}
+
+/* Restaura opacity ao hover para não bloquear navegação */
+.menu__list-item:not(:has(.menu__link--active)) > .menu__link:hover,
+.menu__list-item:not(:has(.menu__link--active)) > .menu__list-item-collapsible:hover {
+  opacity: 1;
+}
+
+/* Tint sutil na lista imediata que contém o item ativo (só quando aninhada) */
+.theme-doc-sidebar-menu:not(:has(> .menu__list-item > .menu__link--active))
+  .menu__list:has(> .menu__list-item > .menu__link--active) {
+  background: rgba(200, 68, 21, 0.04);
+  border-radius: 6px;
+  padding-block: 2px;
+}
+
+[data-theme='dark']
+  .theme-doc-sidebar-menu:not(:has(> .menu__list-item > .menu__link--active))
+  .menu__list:has(> .menu__list-item > .menu__link--active) {
+  background: rgba(255, 140, 85, 0.05);
+}
+
+/* Dark mode — lighter orange for contrast on dark backgrounds */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #ff8c55;
+  --ifm-color-primary-dark: #ff7a3d;
+  --ifm-color-primary-darker: #ff7030;
+  --ifm-color-primary-darkest: #ff5a14;
+  --ifm-color-primary-light: #ff9e6d;
+  --ifm-color-primary-lighter: #ffa878;
+  --ifm-color-primary-lightest: #ffc4a3;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 140, 85, 0.12);
 }

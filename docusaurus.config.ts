@@ -48,7 +48,6 @@ const config: Config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/luigivieira/azion-docs/tree/main/',
         },
         blog: false,
         theme: {
@@ -73,7 +72,7 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'functionsSidebar',
+          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Docs',
         },
@@ -94,9 +93,9 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {label: 'Overview', to: '/'},
-            {label: 'Use Cases', to: '/use-cases'},
-            {label: 'Hello World', to: '/hello-world'},
+            {label: 'Platform Overview', to: '/'},
+            {label: 'Getting Started', to: '/getting-started/create-account'},
+            {label: 'Functions', to: '/build/functions/overview/what-are-functions'},
           ],
         },
         {
@@ -130,7 +129,7 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.vsDark,
       additionalLanguages: ['bash', 'json', 'typescript', 'javascript'],
     },
   } satisfies Preset.ThemeConfig,
