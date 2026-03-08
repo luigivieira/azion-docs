@@ -1,0 +1,31 @@
+.tocEntry {
+  display: block;
+  padding: 0.6rem 0.25rem;
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.tocEntry:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.tocLabel {
+  display: block;
+  font-weight: 500;
+  font-size: 0.975rem;
+}
+
+.tocMeta {
+  display: block;
+  margin-top: 0.1rem;
+  padding-left: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.tocEntry:hover .tocMeta {
+  color: var(--ifm-color-primary-light);
+}
+
