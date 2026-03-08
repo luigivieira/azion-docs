@@ -28,6 +28,14 @@ export default defineConfig({
         find: /^@docusaurus\/.*/,
         replacement: path.resolve(__dirname, 'src/__mocks__/docusaurus.ts'),
       },
+      // Docusaurus theme internals (e.g. @theme-original/DocBreadcrumbs) are
+      // not resolvable outside the Docusaurus build pipeline; map them to a
+      // separate stub so Vite can transform files that import them.
+      // Tests override specific modules with vi.mock('...', factory).
+      {
+        find: /^@theme(-original)?\/.*/,
+        replacement: path.resolve(__dirname, 'src/__mocks__/theme.ts'),
+      },
       {
         find: '@site',
         replacement: path.resolve(__dirname, '.'),
