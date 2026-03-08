@@ -100,6 +100,25 @@ code, pre, kbd, samp, .prism-code {
   display: none;
 }
 
+/* Breadcrumb sizing — replicates the original Docusaurus CSS module */
+.theme-doc-breadcrumbs {
+  --ifm-breadcrumb-size-multiplier: 0.8;
+  margin-bottom: 0.8rem;
+}
+
+/* Reset button appearance for the ellipsis expander and add hover to match links */
+.breadcrumbs__ellipsis {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.breadcrumbs__ellipsis:hover {
+  background: var(--ifm-breadcrumb-item-background-active);
+  text-decoration: none;
+}
+
 /* Sticky header — breadcrumb + nav strip
  *
  * Ativo apenas em mobile: no desktop o sidebar cumpre o papel de localização.

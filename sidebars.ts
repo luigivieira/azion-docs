@@ -16,6 +16,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Getting Started',
       key: 'platform-getting-started',
+      link: {type: 'generated-index'},
       collapsible: true,
       collapsed: true,
       items: [
@@ -28,12 +29,14 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Build',
+      link: {type: 'generated-index'},
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: 'category',
           label: 'Applications',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -47,12 +50,14 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Functions',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
             {
               type: 'category',
               label: 'Overview',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: false,
               items: [
@@ -64,6 +69,7 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Architecture',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: true,
               items: [
@@ -77,6 +83,7 @@ const sidebars: SidebarsConfig = {
               type: 'category',
               label: 'Getting Started',
               key: 'functions-getting-started',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: true,
               items: [
@@ -89,6 +96,7 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Development',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: true,
               items: [
@@ -102,6 +110,7 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Function Instances',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: true,
               items: [
@@ -113,6 +122,7 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Integration',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: true,
               items: [
@@ -124,6 +134,7 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Observability',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: true,
               items: [
@@ -135,6 +146,7 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Advanced Topics',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: true,
               items: [
@@ -147,6 +159,7 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Runtime Reference',
+              link: {type: 'generated-index'},
               collapsible: true,
               collapsed: true,
               items: [
@@ -160,6 +173,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Edge Storage',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -173,6 +187,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Databases',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -186,6 +201,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'AI',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -201,6 +217,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Deliver',
+      link: {type: 'generated-index'},
       collapsible: true,
       collapsed: true,
       items: [
@@ -213,12 +230,14 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Secure',
+      link: {type: 'generated-index'},
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: 'category',
           label: 'WAF',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -231,6 +250,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Bot Protection',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -242,6 +262,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'DDoS Protection',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -254,6 +275,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Observe',
+      link: {type: 'generated-index'},
       collapsible: true,
       collapsed: true,
       items: [
@@ -266,6 +288,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Network',
+      link: {type: 'generated-index'},
       collapsible: true,
       collapsed: true,
       items: [
@@ -278,12 +301,14 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Management',
+      link: {type: 'generated-index'},
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: 'category',
           label: 'CLI',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -295,6 +320,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'API',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -306,6 +332,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Terraform',
+          link: {type: 'generated-index'},
           collapsible: true,
           collapsed: true,
           items: [
@@ -319,6 +346,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Reference',
+      link: {type: 'generated-index'},
       collapsible: true,
       collapsed: true,
       items: [

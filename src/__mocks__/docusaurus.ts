@@ -11,17 +11,23 @@ export const useDoc = vi.fn(() => ({
   metadata: {previous: null, next: null},
 }));
 
+export const useSidebarBreadcrumbs = vi.fn(() => null);
+
 // Link renders a plain <a> for test environments.
 // Exported as both a named export and the module default so that
 // `import Link from '@docusaurus/Link'` and `import {Link} from '...'` both work.
 export function Link({
   to,
+  href,
   children,
+  className,
 }: {
-  to: string;
+  to?: string;
+  href?: string;
   children: React.ReactNode;
+  className?: string;
 }) {
-  return React.createElement('a', {href: to}, children);
+  return React.createElement('a', {href: href ?? to, className}, children);
 }
 
 export default Link;
