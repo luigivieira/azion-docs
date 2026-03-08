@@ -1,6 +1,6 @@
 import React from 'react';
-import {describe, it, expect, vi, beforeEach} from 'vitest';
-import {render, screen, fireEvent} from '@testing-library/react';
+import {describe, it, expect, vi, beforeEach, afterEach} from 'vitest';
+import {render, screen, fireEvent, act} from '@testing-library/react';
 import {useDoc} from '@docusaurus/plugin-content-docs/client';
 import {useSidebarBreadcrumbs} from '@docusaurus/plugin-content-docs/client';
 import IsInDocProviderContext from '../../contexts/IsInDocProviderContext';
@@ -122,6 +122,33 @@ describe('DocBreadcrumbsWrapper', () => {
   });
 });
 
+describe('useIsMobile viewport change', () => {
+  it('updates mobile state when matchMedia fires a change event', () => {
+    let capturedHandler: ((e: MediaQueryListEvent) => void) | null = null;
+    window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: query.includes('max-width'), // starts as mobile
+      media: query,
+      addEventListener: vi.fn().mockImplementation(
+        (type: string, fn: (e: MediaQueryListEvent) => void) => {
+          if (type === 'change') capturedHandler = fn;
+        },
+      ),
+      removeEventListener: vi.fn(),
+    }));
+
+    mockUseSidebarBreadcrumbs.mockReturnValue(BREADCRUMBS_3 as ReturnType<typeof useSidebarBreadcrumbs>);
+    render(<DocBreadcrumbsWrapper />);
+
+    // Fire change event simulating a switch to desktop
+    act(() => {
+      capturedHandler?.({matches: false} as MediaQueryListEvent);
+    });
+
+    // On desktop isMobile=false → no ellipsis regardless of item count
+    expect(screen.queryByText('…')).not.toBeInTheDocument();
+  });
+});
+
 describe('breadcrumb item clickability', () => {
   it('renders intermediate items as links when they have an href', () => {
     mockUseSidebarBreadcrumbs.mockReturnValue(BREADCRUMBS_3 as ReturnType<typeof useSidebarBreadcrumbs>);
@@ -137,6 +164,17 @@ describe('breadcrumb item clickability', () => {
     expect(screen.getByText('Current Page')).toBeInTheDocument();
   });
 
+  it('renders a linkUnlisted category as plain text (no link)', () => {
+    const breadcrumbs = [
+      {type: 'category', label: 'Unlisted', href: '/unlisted', linkUnlisted: true},
+      {type: 'link', label: 'Page', href: '/page'},
+    ];
+    mockUseSidebarBreadcrumbs.mockReturnValue(breadcrumbs as ReturnType<typeof useSidebarBreadcrumbs>);
+    render(<DocBreadcrumbsWrapper />);
+    expect(screen.queryByRole('link', {name: 'Unlisted'})).not.toBeInTheDocument();
+    expect(screen.getByText('Unlisted')).toBeInTheDocument();
+  });
+
   it('renders an item as plain text when href is absent', () => {
     const breadcrumbs = [
       {type: 'category', label: 'No Link', href: undefined},
@@ -150,8 +188,25 @@ describe('breadcrumb item clickability', () => {
 });
 
 describe('mobile ellipsis', () => {
+  let restoreBoundingRect: () => void;
+
   beforeEach(() => {
     setViewport(375);
+    // Simulate items wrapping: first li in the ul has top=0, subsequent lis have top=20
+    const spy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(
+      function (this: HTMLElement) {
+        const parent = this.parentElement;
+        if (parent?.tagName === 'UL' && parent.children[0] !== this) {
+          return {top: 20, left: 0, right: 100, bottom: 40, width: 100, height: 20} as DOMRect;
+        }
+        return {top: 0, left: 0, right: 100, bottom: 20, width: 100, height: 20} as DOMRect;
+      },
+    );
+    restoreBoundingRect = () => spy.mockRestore();
+  });
+
+  afterEach(() => {
+    restoreBoundingRect();
   });
 
   it('shows ellipsis as a clickable button when there are more than 2 items', () => {

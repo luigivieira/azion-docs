@@ -1,16 +1,18 @@
 import React from 'react';
 import {describe, it, expect, vi, beforeEach} from 'vitest';
 import {render, screen} from '@testing-library/react';
-import {useDoc} from '@docusaurus/plugin-content-docs/client';
-import DocNavStrip from '../DocNavStrip';
+import {useDoc, useDocsSidebar} from '@docusaurus/plugin-content-docs/client';
+import DocNavStrip, {DocNavStripUI} from '../DocNavStrip';
 
 const mockUseDoc = vi.mocked(useDoc);
+const mockUseDocsSidebar = vi.mocked(useDocsSidebar);
 
 const PREV = {permalink: '/docs/prev-page', title: 'Previous Page'};
 const NEXT = {permalink: '/docs/next-page', title: 'Next Page'};
 
 beforeEach(() => {
   mockUseDoc.mockReturnValue({metadata: {previous: null, next: null}} as ReturnType<typeof useDoc>);
+  mockUseDocsSidebar.mockReturnValue(null);
 });
 
 describe('DocNavStrip', () => {
@@ -135,6 +137,62 @@ describe('DocNavStrip', () => {
         'href',
         '/docs/next-page',
       );
+    });
+  });
+
+  describe('sidebar label resolution', () => {
+    it('uses sidebar label for previous when sidebar has a matching link item', () => {
+      mockUseDoc.mockReturnValue({metadata: {previous: PREV, next: null}} as ReturnType<typeof useDoc>);
+      mockUseDocsSidebar.mockReturnValue({
+        name: 'default',
+        items: [{type: 'link', href: '/docs/prev-page', label: 'Sidebar Prev Label', docId: 'prev'}],
+      } as ReturnType<typeof useDocsSidebar>);
+      render(<DocNavStrip />);
+      expect(screen.getByText('Sidebar Prev Label')).toBeInTheDocument();
+    });
+
+    it('uses sidebar label for previous when sidebar has a matching category by href', () => {
+      mockUseDoc.mockReturnValue({metadata: {previous: PREV, next: null}} as ReturnType<typeof useDoc>);
+      mockUseDocsSidebar.mockReturnValue({
+        name: 'default',
+        items: [{
+          type: 'category',
+          href: '/docs/prev-page',
+          label: 'Cat Prev Label',
+          items: [],
+          collapsible: true,
+          collapsed: false,
+        }],
+      } as ReturnType<typeof useDocsSidebar>);
+      render(<DocNavStrip />);
+      expect(screen.getByText('Cat Prev Label')).toBeInTheDocument();
+    });
+
+    it('finds label recursively inside nested category items', () => {
+      mockUseDoc.mockReturnValue({metadata: {previous: PREV, next: null}} as ReturnType<typeof useDoc>);
+      mockUseDocsSidebar.mockReturnValue({
+        name: 'default',
+        items: [{
+          type: 'category',
+          href: '/docs/other',
+          label: 'Parent Cat',
+          collapsible: true,
+          collapsed: false,
+          items: [{type: 'link', href: '/docs/prev-page', label: 'Nested Label', docId: 'prev'}],
+        }],
+      } as ReturnType<typeof useDocsSidebar>);
+      render(<DocNavStrip />);
+      expect(screen.getByText('Nested Label')).toBeInTheDocument();
+    });
+
+    it('falls back to metadata title when permalink is not found in sidebar', () => {
+      mockUseDoc.mockReturnValue({metadata: {previous: PREV, next: null}} as ReturnType<typeof useDoc>);
+      mockUseDocsSidebar.mockReturnValue({
+        name: 'default',
+        items: [{type: 'link', href: '/docs/other-page', label: 'Other Label', docId: 'other'}],
+      } as ReturnType<typeof useDocsSidebar>);
+      render(<DocNavStrip />);
+      expect(screen.getByText('Previous Page')).toBeInTheDocument();
     });
   });
 

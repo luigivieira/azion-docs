@@ -16,6 +16,11 @@ export const useSidebarBreadcrumbs = vi.fn(() => null);
 // Returns null sidebar by default; tests can override via vi.mocked(useDocsSidebar).mockReturnValue(...)
 export const useDocsSidebar = vi.fn(() => null);
 
+export const useDocById = vi.fn(() => null);
+export const findFirstSidebarItemLink = vi.fn(() => null);
+export const useCurrentSidebarSiblings = vi.fn(() => []);
+export const filterDocCardListItems = vi.fn((items: unknown[]) => items);
+
 // Link renders a plain <a> for test environments.
 // Exported as both a named export and the module default so that
 // `import Link from '@docusaurus/Link'` and `import {Link} from '...'` both work.

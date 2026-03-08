@@ -118,10 +118,6 @@ function DocBreadcrumbs(): ReactNode {
 
     const measure = () => {
       const items = Array.from(ul.children) as HTMLElement[];
-      if (items.length <= 1) {
-        setOverflows(false);
-        return;
-      }
       const firstTop = Math.round(items[0].getBoundingClientRect().top);
       const wraps = items.some(
         item => Math.round(item.getBoundingClientRect().top) > firstTop,
