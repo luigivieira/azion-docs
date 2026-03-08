@@ -94,6 +94,77 @@ code, pre, kbd, samp, .prism-code {
   background: rgba(255, 140, 85, 0.05);
 }
 
+
+/* Hide original pagination cards — navigation is handled by DocNavStrip */
+.pagination-nav {
+  display: none;
+}
+
+/* Sticky header: breadcrumb + nav strip como uma unidade
+ *
+ * Fundo sólido para impedir que conteúdo apareça por baixo ao rolar.
+ * Sombra animada via animation-timeline (Chrome/Firefox modernos);
+ * fallback: borda inferior sutil em browsers sem suporte.
+ */
+:root {
+  --doc-header-shadow: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] {
+  --doc-header-shadow: rgba(0, 0, 0, 0.35);
+}
+
+.doc-sticky-header {
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  background-color: #fff;
+  z-index: 100;
+  margin-bottom: 2rem;
+  padding-top: 0.5rem;
+}
+
+/* overflow-x: clip no .row que contém o header:
+ * clippa o pseudo-elemento nos limites do container da página (sidebar + article + TOC)
+ * sem quebrar o sticky (clip não cria scroll container, ao contrário de hidden) */
+.row:has(.doc-sticky-header) {
+  overflow-x: clip;
+}
+
+/* Pseudo-elemento estende fundo e borda/sombra até as bordas do .row */
+.doc-sticky-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100vw;
+  right: -100vw;
+  background-color: #fff;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  z-index: -1;
+}
+
+[data-theme='dark'] .doc-sticky-header {
+  background-color: #1b1b1d;
+}
+
+[data-theme='dark'] .doc-sticky-header::before {
+  background-color: #1b1b1d;
+}
+
+/* Sombra progressiva ao rolar no pseudo-elemento — cobre full width */
+@supports (animation-timeline: scroll()) {
+  @keyframes doc-header-shadow {
+    from { box-shadow: none; }
+    to   { box-shadow: 0 4px 16px var(--doc-header-shadow); border-bottom-color: transparent; }
+  }
+
+  .doc-sticky-header::before {
+    animation: doc-header-shadow linear both;
+    animation-timeline: scroll();
+    animation-range: 1px 80px;
+  }
+}
+
 /* Dark mode — lighter orange for contrast on dark backgrounds */
 [data-theme='dark'] {
   --ifm-color-primary: #ff8c55;
