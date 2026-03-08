@@ -5,8 +5,9 @@ import Link from '@docusaurus/Link';
 import {translate} from '@docusaurus/Translate';
 import HomeBreadcrumbItem from '@theme/DocBreadcrumbs/Items/Home';
 import DocBreadcrumbsStructuredData from '@theme/DocBreadcrumbs/StructuredData';
-import DocNavStrip from '@site/src/components/DocNavStrip';
+import DocNavStrip, {DocNavStripUI} from '@site/src/components/DocNavStrip';
 import IsInDocProviderContext from '@site/src/contexts/IsInDocProviderContext';
+import CategoryPageNavContext from '@site/src/contexts/CategoryPageNavContext';
 
 // Matches the Docusaurus mobile breakpoint used in CSS
 const MOBILE_BREAKPOINT_PX = 996;
@@ -129,12 +130,17 @@ function DocBreadcrumbs(): ReactNode {
   );
 }
 
+type NavItem = {permalink: string; title: string};
+type CategoryNav = {previous?: NavItem; next?: NavItem};
+
 export default function DocBreadcrumbsWrapper(): React.JSX.Element {
   const isInDocProvider = useContext(IsInDocProviderContext);
+  const categoryNav = useContext(CategoryPageNavContext) as CategoryNav | null;
   return (
     <div className="doc-sticky-header">
       <DocBreadcrumbs />
       {isInDocProvider && <DocNavStrip />}
+      {categoryNav && <DocNavStripUI previous={categoryNav.previous} next={categoryNav.next} />}
     </div>
   );
 }

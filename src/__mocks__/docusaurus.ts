@@ -13,6 +13,9 @@ export const useDoc = vi.fn(() => ({
 
 export const useSidebarBreadcrumbs = vi.fn(() => null);
 
+// Returns null sidebar by default; tests can override via vi.mocked(useDocsSidebar).mockReturnValue(...)
+export const useDocsSidebar = vi.fn(() => null);
+
 // Link renders a plain <a> for test environments.
 // Exported as both a named export and the module default so that
 // `import Link from '@docusaurus/Link'` and `import {Link} from '...'` both work.
