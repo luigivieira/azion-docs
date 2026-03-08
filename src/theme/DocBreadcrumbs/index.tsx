@@ -1,4 +1,4 @@
-import React, {useContext, type ReactNode, useState, useEffect} from 'react';
+import React, {useContext, type ReactNode, useState, useEffect, useLayoutEffect, useRef} from 'react';
 import clsx from 'clsx';
 import {useSidebarBreadcrumbs} from '@docusaurus/plugin-content-docs/client';
 import Link from '@docusaurus/Link';
@@ -13,7 +13,11 @@ import CategoryPageNavContext from '@site/src/contexts/CategoryPageNavContext';
 const MOBILE_BREAKPOINT_PX = 996;
 
 function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT_PX}px)`).matches
+      : false,
+  );
   useEffect(() => {
     const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT_PX}px)`);
     setIsMobile(mq.matches);
@@ -85,12 +89,57 @@ function DocBreadcrumbs(): ReactNode {
   const breadcrumbs = useSidebarBreadcrumbs();
   const isMobile = useIsMobile();
   const [expanded, setExpanded] = useState(false);
+  const [overflows, setOverflows] = useState(false);
+  const ulRef = useRef<HTMLUListElement>(null);
+
+  const canCollapse = isMobile && !!breadcrumbs && breadcrumbs.length > 2;
+  const shouldCollapse = canCollapse && !expanded && overflows;
+
+  // Reset when switching to desktop
+  useEffect(() => {
+    if (!isMobile) {
+      setExpanded(false);
+      setOverflows(false);
+    }
+  }, [isMobile]);
+
+  // Measure whether all items overflow their container.
+  // Only runs when all items are rendered (shouldCollapse = false) to get
+  // accurate measurements. Uses useLayoutEffect so the browser doesn't paint
+  // the expanded state before potentially collapsing it.
+  useLayoutEffect(() => {
+    if (shouldCollapse) return; // collapsed — no need to re-measure
+    if (!canCollapse) {
+      setOverflows(false);
+      return;
+    }
+    const ul = ulRef.current;
+    if (!ul) return;
+
+    const measure = () => {
+      const items = Array.from(ul.children) as HTMLElement[];
+      if (items.length <= 1) {
+        setOverflows(false);
+        return;
+      }
+      const firstTop = Math.round(items[0].getBoundingClientRect().top);
+      const wraps = items.some(
+        item => Math.round(item.getBoundingClientRect().top) > firstTop,
+      );
+      setOverflows(wraps);
+    };
+
+    measure();
+
+    const ro = new ResizeObserver(measure);
+    ro.observe(ul);
+    return () => ro.disconnect();
+  }, [canCollapse, shouldCollapse]);
 
   if (!breadcrumbs) {
     return null;
   }
 
-  const shouldCollapse = isMobile && !expanded && breadcrumbs.length > 2;
   const itemsToRender = shouldCollapse
     ? ([breadcrumbs[0], null, breadcrumbs[breadcrumbs.length - 1]] as const)
     : breadcrumbs;
@@ -105,7 +154,7 @@ function DocBreadcrumbs(): ReactNode {
           message: 'Breadcrumbs',
           description: 'The ARIA label for the breadcrumbs',
         })}>
-        <ul className={clsx('breadcrumbs', {'breadcrumbs--collapsed': shouldCollapse})}>
+        <ul ref={ulRef} className={clsx('breadcrumbs', {'breadcrumbs--collapsed': shouldCollapse})}>
           <HomeBreadcrumbItem />
           {itemsToRender.map((item, idx) => {
             if (item === null) {

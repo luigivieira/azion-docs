@@ -121,7 +121,7 @@ code, pre, kbd, samp, .prism-code {
   }
 
   .theme-doc-breadcrumbs .breadcrumbs--collapsed .breadcrumbs__item--active {
-    flex: 1 1 0;
+    flex: 0 1 auto;
     min-width: 0;
     overflow: hidden;
   }
