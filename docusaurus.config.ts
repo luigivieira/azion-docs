@@ -12,7 +12,7 @@ const config: Config = {
   },
 
   url: 'https://luigivieira.github.io',
-  baseUrl: '/',
+  baseUrl: '/azion-docs/',
 
   organizationName: 'luigivieira',
   projectName: 'azion-docs',
