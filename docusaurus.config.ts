@@ -60,7 +60,7 @@ const config: Config = {
   themeConfig: {
     image: 'img/azion-docs-social-card.png',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'light',
     },
     navbar: {
       title: 'Challenge DevRel',
@@ -99,9 +99,10 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {label: 'Platform Overview', to: '/'},
-            {label: 'Getting Started', to: '/getting-started/create-account'},
-            {label: 'Functions', to: '/build/functions/overview/what-are-functions'},
+            {label: 'What are Functions?', to: '/build/functions/overview/what-are-functions'},
+            {label: 'Getting Started', to: '/build/functions/getting-started/prerequisites'},
+            {label: 'Platform Integration', to: '/category/platform-integration'},
+            {label: 'Changes Rationale', to: '/rationale'},
           ],
         },
         {
