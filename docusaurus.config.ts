@@ -63,7 +63,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Azion Documentation',
+      title: 'Challenge DevRel',
       logo: {
         alt: 'Azion Logo',
         src: 'img/logo.svg',
@@ -72,9 +72,15 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
+          sidebarId: 'rationaleSidebar',
+          position: 'left',
+          label: 'Changes Rationale',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Docs',
+          label: 'Proposed Docs',
         },
         {
           type: 'localeDropdown',

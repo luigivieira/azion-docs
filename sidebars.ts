@@ -1,6 +1,13 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
+  rationaleSidebar: [
+    {
+      type: 'doc',
+      id: 'rationale',
+      label: 'Rationale',
+    },
+  ],
   docsSidebar: [
     {
       type: 'doc',
