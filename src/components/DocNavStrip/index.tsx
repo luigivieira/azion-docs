@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from '@docusaurus/Link';
 import {useDoc, useDocsSidebar} from '@docusaurus/plugin-content-docs/client';
 import type {PropSidebarItem} from '@docusaurus/plugin-content-docs';
+import {useHistory} from '@docusaurus/router';
 import styles from './styles.module.css';
 
 interface NavItem {
@@ -45,6 +46,41 @@ export function DocNavStripUI({
 }): React.JSX.Element | null {
   const prevTitle = useTranslatedTitle(previous);
   const nextTitle = useTranslatedTitle(next);
+  const history = useHistory();
+  const [modifierKey, setModifierKey] = useState('⌘');
+
+  useEffect(() => {
+    if (typeof navigator !== 'undefined') {
+      const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+      setModifierKey(isMac ? '⌘' : 'Ctrl');
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Ignore key events originating from form inputs
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement ||
+        (event.target instanceof HTMLElement && event.target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if ((event.metaKey || event.ctrlKey) && event.key === 'ArrowLeft') {
+        if (previous) {
+          event.preventDefault();
+          history.push(previous.permalink);
+        }
+      } else if ((event.metaKey || event.ctrlKey) && event.key === 'ArrowRight') {
+        if (next) {
+          event.preventDefault();
+          history.push(next.permalink);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [previous, next, history]);
 
   if (!previous && !next) {
     return null;
@@ -56,6 +92,7 @@ export function DocNavStripUI({
         {previous && (
           <Link to={previous.permalink}>
             <span className={styles.arrow}>←</span>
+            <span className={styles.shortcut}><kbd>{modifierKey}</kbd> <kbd>←</kbd></span>
             <span className={styles.label}>{prevTitle}</span>
           </Link>
         )}
@@ -64,6 +101,7 @@ export function DocNavStripUI({
         {next && (
           <Link to={next.permalink}>
             <span className={styles.label}>{nextTitle}</span>
+            <span className={styles.shortcut}><kbd>{modifierKey}</kbd> <kbd>→</kbd></span>
             <span className={styles.arrow}>→</span>
           </Link>
         )}

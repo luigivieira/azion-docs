@@ -5,6 +5,14 @@ import {useDoc} from '@docusaurus/plugin-content-docs/client';
 import {useSidebarBreadcrumbs} from '@docusaurus/plugin-content-docs/client';
 import IsInDocProviderContext from '../../contexts/IsInDocProviderContext';
 
+vi.mock('@docusaurus/router', async (importOriginal) => {
+  const actual = await importOriginal<any>();
+  return {
+    ...actual,
+    useHistory: vi.fn(() => ({ push: vi.fn() }))
+  };
+});
+
 const mockUseDoc = vi.mocked(useDoc);
 const mockUseSidebarBreadcrumbs = vi.mocked(useSidebarBreadcrumbs);
 

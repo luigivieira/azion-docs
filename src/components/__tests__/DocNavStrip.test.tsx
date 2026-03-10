@@ -1,16 +1,30 @@
 import React from 'react';
 import {describe, it, expect, vi, beforeEach} from 'vitest';
-import {render, screen} from '@testing-library/react';
+import {render, screen, fireEvent} from '@testing-library/react';
 import {useDoc, useDocsSidebar} from '@docusaurus/plugin-content-docs/client';
+import {useHistory} from '@docusaurus/router';
 import DocNavStrip, {DocNavStripUI} from '../DocNavStrip';
+
+vi.mock('@docusaurus/router', async (importOriginal) => {
+  const actual = await importOriginal<any>();
+  return {
+    ...actual,
+    useHistory: vi.fn(() => ({ push: vi.fn() }))
+  };
+});
 
 const mockUseDoc = vi.mocked(useDoc);
 const mockUseDocsSidebar = vi.mocked(useDocsSidebar);
+const mockUseHistory = vi.mocked(useHistory);
 
 const PREV = {permalink: '/docs/prev-page', title: 'Previous Page'};
 const NEXT = {permalink: '/docs/next-page', title: 'Next Page'};
 
+let mockPush: any;
+
 beforeEach(() => {
+  mockPush = vi.fn();
+  mockUseHistory.mockReturnValue({ push: mockPush } as any);
   mockUseDoc.mockReturnValue({metadata: {previous: null, next: null}} as ReturnType<typeof useDoc>);
   mockUseDocsSidebar.mockReturnValue(null);
 });
@@ -51,7 +65,7 @@ describe('DocNavStrip', () => {
 
     it('renders the previous arrow (←)', () => {
       render(<DocNavStrip />);
-      expect(screen.getByText('←')).toBeInTheDocument();
+      expect(screen.getAllByText('←').length).toBeGreaterThan(0);
     });
 
     it('renders the previous page title', () => {
@@ -85,7 +99,7 @@ describe('DocNavStrip', () => {
 
     it('renders the next arrow (→)', () => {
       render(<DocNavStrip />);
-      expect(screen.getByText('→')).toBeInTheDocument();
+      expect(screen.getAllByText('→').length).toBeGreaterThan(0);
     });
 
     it('renders the next page title', () => {
@@ -208,6 +222,42 @@ describe('DocNavStrip', () => {
       render(<DocNavStrip />);
       expect(screen.getByRole('link', {name: /Previous Page/})).toBeInTheDocument();
       expect(screen.getByRole('link', {name: /Next Page/})).toBeInTheDocument();
+    });
+  });
+
+  describe('keyboard shortcuts', () => {
+    beforeEach(() => {
+      mockUseDoc.mockReturnValue({metadata: {previous: PREV, next: NEXT}} as ReturnType<typeof useDoc>);
+    });
+
+    it('navigates to previous page on CMD/CTRL + Left Arrow', () => {
+      render(<DocNavStrip />);
+      fireEvent.keyDown(window, { key: 'ArrowLeft', metaKey: true });
+      expect(mockPush).toHaveBeenCalledWith('/docs/prev-page');
+    });
+
+    it('navigates to next page on CMD/CTRL + Right Arrow', () => {
+      render(<DocNavStrip />);
+      fireEvent.keyDown(window, { key: 'ArrowRight', ctrlKey: true });
+      expect(mockPush).toHaveBeenCalledWith('/docs/next-page');
+    });
+
+    it('does not navigate on Arrow alone without modifier', () => {
+      render(<DocNavStrip />);
+      fireEvent.keyDown(window, { key: 'ArrowRight', metaKey: false, ctrlKey: false });
+      expect(mockPush).not.toHaveBeenCalled();
+    });
+
+    it('ignores events from inputs', () => {
+      render(
+        <div>
+          <DocNavStrip />
+          <input data-testid="input" />
+        </div>
+      );
+      const input = screen.getByTestId('input');
+      fireEvent.keyDown(input, { key: 'ArrowRight', metaKey: true });
+      expect(mockPush).not.toHaveBeenCalled();
     });
   });
 });

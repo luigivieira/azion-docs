@@ -51,3 +51,23 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+
+.shortcut {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.shortcut kbd {
+  font-size: 0.75rem;
+  padding: 0.1rem 0.3rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+@media (max-width: 996px) {
+  .shortcut {
+    display: none;
+  }
+}
