@@ -57,6 +57,16 @@ const config: Config = {
     ],
   ],
 
+  themes: [
+    [
+      require.resolve('docusaurus-plugin-search-local'),
+      {
+        hashed: true,
+        docsRouteBasePath: '/',
+      },
+    ],
+  ],
+
   themeConfig: {
     image: 'img/azion-docs-social-card.png',
     colorMode: {
