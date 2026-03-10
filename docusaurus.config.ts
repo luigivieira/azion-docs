@@ -109,10 +109,10 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {label: 'What are Functions?', to: '/overview/what-are-functions'},
-            {label: 'Getting Started', to: '/getting-started/prerequisites'},
+            {label: 'Overview', to: '/category/overview'},
+            {label: 'Getting Started', to: '/category/getting-started'},
+            {label: 'Development', to: '/category/development'},
             {label: 'Platform Integration', to: '/category/platform-integration'},
-            {label: 'Rationale', to: '/rationale'},
           ],
         },
         {
@@ -136,13 +136,13 @@ const config: Config = {
               href: 'https://github.com/luigivieira/azion-docs',
             },
             {
-              label: 'Real-world example (open5e)',
+              label: 'Toy Example (D&D Spells Translated by AI)',
               href: 'https://github.com/luigivieira/augmentedopen5e',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Luigi Vieira. Built with Docusaurus.`,
+      copyright: `Created with love by Luiz Carlos Vieira, with Docusaurus`,
     },
     prism: {
       theme: prismThemes.github,
