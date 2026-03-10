@@ -10,7 +10,7 @@ With the workload created and propagated, your function is live. In this final s
 
 ## Access your domain
 
-Open a browser and navigate to the `azionedge.net` domain assigned to your workload. You should see a page with a Pokémon's sprite, name, and type — fetched live from the PokéAPI at the edge.
+Open a browser and navigate to `potd.azion.app/pokemon-of-the-day`. You should see a page with a Pokémon's sprite, name, and type — fetched live from the PokéAPI at the edge.
 
 <video width="100%" controls style={{borderRadius: '8px'}}>
   <source src="https://github.com/luigivieira/azion-docs/releases/download/media-v1/Acessing.the.domain.mp4" type="video/mp4" />

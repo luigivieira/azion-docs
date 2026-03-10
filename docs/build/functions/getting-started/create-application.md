@@ -6,7 +6,7 @@ description: Create an Edge Application and instantiate your function.
 
 # Create an Application
 
-An **Edge Application** is the container that runs at the edge and determines how incoming requests are handled. In this step, you'll create one and attach the function you wrote in the previous step.
+An **Edge Application** is the container that runs at the edge and determines how incoming requests are handled. In this step, you'll create one, instantiate your function inside it, and configure the rules that define when and how the function runs.
 
 <video width="100%" controls style={{borderRadius: '8px'}}>
   <source src="https://github.com/luigivieira/azion-docs/releases/download/media-v1/Creating.the.application.mp4" type="video/mp4" />
@@ -20,30 +20,54 @@ In **Azion Console**, go to **Build** → **Edge Applications** in the left side
 
 ### 2. Create a new application
 
-Click **Add Application**. Give it a name — for example, `pokemon-app`.
+Click **Add Application**. Name it `PokemonOfTheDay - Application`.
 
 :::info Edge Functions must be enabled
 On the application settings page, make sure the **Edge Functions** module is enabled. This allows the application to execute functions in response to requests.
 :::
 
-### 3. Add a Rule to invoke the function
+### 3. Create a Function Instance
 
-Go to the **Rules Engine** tab inside your application. You'll use a rule to tell the application when to run your function.
+Before the application can run your function, you need to create an **instance** — a reference that binds the function to this specific application.
 
-1. Under **Default Rule**, click to edit it or create a new rule for the **Request Phase**.
-2. Set the criteria to match all requests (the default `If Request URI starts with /` works for this guide).
-3. In the **Behavior** section, select **Run Function**.
-4. Choose the function you created (`pokemon-function`) from the list.
-5. Save the rule.
+Go to the **Functions** tab inside your application and click **Add Function**. Name the instance `PokemonOfTheDay - Function - Instance` and select `PokemonOfTheDay - Function` from the function list.
 
-:::note Why Rules Engine?
-Rules Engine is what connects your application to its behaviors. A function only runs when a rule triggers it — this gives you control to run different functions for different paths, methods, or conditions.
+:::note What is a Function Instance?
+A Function Instance is not the function itself — it's a pointer to it within the context of an application. This allows the same function to be reused across multiple applications with different configurations.
 :::
 
-### 4. Save the application
+### 4. Create the Request Rule
 
-Click **Save** to apply your changes. The application is now configured to run your function on every incoming request.
+Go to the **Rules Engine** tab and create a new rule for the **Request Phase**. Name it `PokemonOfTheDay - Rule - Request`.
+
+Configure it as follows:
+
+- **Criteria**: `If Request URI` → `starts with` → `/pokemon-of-the-day`
+- **Behavior**: `Run Function` → select `PokemonOfTheDay - Function - Instance`
+
+Save the rule.
+
+This rule tells the application: whenever a request comes in for `/pokemon-of-the-day`, run the function.
+
+### 5. Create the Response Rule
+
+Still in **Rules Engine**, create a second rule for the **Response Phase**. Name it `PokemonOfTheDay - Response`.
+
+Configure it as follows:
+
+- **Criteria**: same path — `If Request URI` → `starts with` → `/pokemon-of-the-day`
+- **Behavior**: `Enable Gzip`
+
+Save the rule.
+
+:::tip Why Gzip?
+Enabling Gzip compression on the response phase reduces the size of the HTML payload delivered to the browser, improving load time — especially useful for responses that include repeated markup patterns.
+:::
+
+### 6. Save the application
+
+All changes in Rules Engine are saved per-rule. Make sure both rules are saved before moving on.
 
 ## Next step
 
-The application is set up, but it's not yet reachable from the internet. Proceed to [Create a Workload](./create-workload) to expose it.
+The application is configured but not yet reachable from the internet. Proceed to [Create a Workload](./create-workload) to expose it.

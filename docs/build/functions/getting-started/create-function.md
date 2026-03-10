@@ -20,7 +20,7 @@ In **Azion Console**, go to **Build** → **Edge Functions** in the left sidebar
 
 ### 2. Create a new function
 
-Click **Add Function**. Give it a name — for example, `pokemon-function`.
+Click **Add Function**. Name it `PokemonOfTheDay - Function`.
 
 ### 3. Write the code
 
