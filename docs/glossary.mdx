@@ -1,0 +1,250 @@
+---
+title: Glossary
+sidebar_position: 99
+description: A comprehensive glossary of terms and acronyms used in the Azion Edge Functions documentation.
+---
+
+import GlossarySearch from '@site/src/components/GlossarySearch';
+import Link from '@docusaurus/Link';
+
+# Glossary
+
+This page provides definitions for terms and acronyms used throughout the Azion Edge Functions documentation.
+
+<GlossarySearch />
+
+<br/>
+
+<div className="glossary-term" data-term="api">
+  <h3 id="api">API</h3>
+  <p>Application Programming Interface. A set of defined rules that enable different applications to communicate with each other.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/runtime-apis">First mentioned in: Runtime APIs</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/en-US/docs/Glossary/API" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Standard reference</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="azion cli">
+  <h3 id="azion-cli">Azion CLI</h3>
+  <p>The official command-line interface for interacting with and managing Azion services from your terminal.</p>
+  <p>
+    <small>
+      <Link to="/observability/debugging">First mentioned in: Debugging</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="cache api">
+  <h3 id="cache-api">Cache API</h3>
+  <p>A web standard interface providing a storage mechanism for <code>Request</code> and <code>Response</code> object pairs.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/runtime-apis">First mentioned in: Runtime APIs</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Cache" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Standard reference</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="ci cd">
+  <h3 id="ci-cd">CI/CD</h3>
+  <p>Continuous Integration and Continuous Delivery/Deployment. Development practices to automate testing and rollout of code changes.</p>
+  <p>
+    <small>
+      <Link to="/development/complete-example-project">First mentioned in: Complete Example Project</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="cold start">
+  <h3 id="cold-start">Cold Start</h3>
+  <p>The initialization latency that occurs when a function is invoked for the first time on an edge node, or after a period of dormancy. The runtime must spin up an isolate before handling the request.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/execution-model">First mentioned in: Execution Model</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="edge application">
+  <h3 id="edge-application">Edge Application</h3>
+  <p>An application built, delivered, and secured at the edge of the network using Azion's platform components.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/functions-in-platform-architecture">First mentioned in: Functions in Platform Architecture</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="edge firewall">
+  <h3 id="edge-firewall">Edge Firewall</h3>
+  <p>A programmable and extensible security layer protecting applications directly at the edge nodes.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/functions-in-platform-architecture">First mentioned in: Functions in Platform Architecture</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="edge function">
+  <h3 id="edge-function">Edge Function</h3>
+  <p>A piece of programmable logic running on Azion Edge Nodes with very low latency, serving requests intimately close to end-users.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/application-integration">First mentioned in: Application Integration</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="edge node">
+  <h3 id="edge-node">Edge Node</h3>
+  <p>A globally distributed server location within the Azion network that processes requests directly at the edge, rather than routing to a central origin server.</p>
+  <p>
+    <small>
+      <Link to="/advanced/performance-optimization">First mentioned in: Performance Optimization</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="function instance">
+  <h3 id="function-instance">Function Instance</h3>
+  <p>A specific deployment configuration of an Edge Function that pairs the underlying logic (code) with specific arguments and environment variables.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/configuration">First mentioned in: Configuration</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="http">
+  <h3 id="http">HTTP</h3>
+  <p>Hypertext Transfer Protocol. The foundation of structured data communication for the World Wide Web.</p>
+  <p>
+    <small>
+      <Link to="/limits">First mentioned in: Limits</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Standard reference</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="https">
+  <h3 id="https">HTTPS</h3>
+  <p>Hypertext Transfer Protocol Secure. The encrypted, secure extension of HTTP.</p>
+  <p>
+    <small>
+      <Link to="/limits">First mentioned in: Limits</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTTPS" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Standard reference</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="json">
+  <h3 id="json">JSON</h3>
+  <p>JavaScript Object Notation. A standard, lightweight data-interchange format that is easy for humans to read and write.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/what-is-a-function-instance">First mentioned in: What is a Function Instance?</Link>
+      {' | '}
+      <a href="https://www.json.org/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Standard reference</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="kv key value">
+  <h3 id="kv">KV</h3>
+  <p>Key-Value storage. A data storage paradigm where every item is uniquely identified and retrieved via a distinct key.</p>
+  <p>
+    <small>
+      <Link to="/development/complete-example-project">First mentioned in: Complete Example Project</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="request phase">
+  <h3 id="request-phase">Request Phase</h3>
+  <p>The processing stage in an Edge Application during which an incoming client request is handled, usually manipulated before reaching the origin.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/application-integration">First mentioned in: Application Integration</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="response phase">
+  <h3 id="response-phase">Response Phase</h3>
+  <p>The processing stage in an Edge Application during which the response from the origin is intercepted and modified before delivery to the client.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/application-integration">First mentioned in: Application Integration</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="rules engine">
+  <h3 id="rules-engine">Rules Engine</h3>
+  <p>The conditional logic mechanism in Azion that defines criteria and behaviors, determining the circumstances under which function instances execute.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/configuration">First mentioned in: Configuration</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="subrequest">
+  <h3 id="subrequest">Subrequest</h3>
+  <p>An auxiliary, outbound HTTP request initiated from within an executing Edge Function, typically using the <code>fetch()</code> API.</p>
+  <p>
+    <small>
+      <Link to="/advanced/performance-optimization">First mentioned in: Performance Optimization</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="web apis">
+  <h3 id="web-apis">Web APIs</h3>
+  <p>Standardized programming interfaces provided natively by the Web platform, such as <code>fetch</code>, <code>Request</code>, and <code>Response</code>.</p>
+  <p>
+    <small>
+      <Link to="/advanced/webassembly">First mentioned in: WebAssembly</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Standard reference</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="webassembly wasm">
+  <h3 id="webassembly">WebAssembly (Wasm)</h3>
+  <p>A binary instruction format designed as a portable compilation target, enabling execution at near-native speed in web and edge environments.</p>
+  <p>
+    <small>
+      <Link to="/advanced/webassembly">First mentioned in: WebAssembly</Link>
+      {' | '}
+      <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Standard reference</a>
+    </small>
+  </p>
+  <hr />
+</div>

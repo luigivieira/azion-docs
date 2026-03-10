@@ -102,6 +102,7 @@ const sidebars: SidebarsConfig = {
         'runtime-reference/runtime-environment',
       ],
     },
+    'glossary',
   ],
 };
 

@@ -1,0 +1,250 @@
+---
+title: Glosario
+sidebar_position: 99
+description: Un glosario completo de términos y acrónimos utilizados en la documentación de Azion Edge Functions.
+---
+
+import GlossarySearch from '@site/src/components/GlossarySearch';
+import Link from '@docusaurus/Link';
+
+# Glosario
+
+Esta página proporciona definiciones de términos y acrónimos utilizados en la documentación de Azion Edge Functions.
+
+<GlossarySearch placeholder="Buscar términos en el glosario..." emptyStateText="No se encontró ningún término." />
+
+<br/>
+
+<div className="glossary-term" data-term="api">
+  <h3 id="api">API</h3>
+  <p>Application Programming Interface (Interfaz de Programación de Aplicaciones). Un conjunto de reglas que permiten la comunicación entre diferentes aplicaciones.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/runtime-apis">Mencionado por primera vez en: Runtime APIs</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/es/docs/Glossary/API" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Referencia estándar</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="azion cli">
+  <h3 id="azion-cli">Azion CLI</h3>
+  <p>La interfaz de línea de comando oficial para interactuar y administrar los servicios de Azion desde su terminal.</p>
+  <p>
+    <small>
+      <Link to="/observability/debugging">Mencionado por primera vez en: Debugging</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="cache api">
+  <h3 id="cache-api">Cache API</h3>
+  <p>Una interfaz web estándar que proporciona un mecanismo de almacenamiento para objetos de tipo <code>Request</code> y <code>Response</code>.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/runtime-apis">Mencionado por primera vez en: Runtime APIs</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/es/docs/Web/API/Cache" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Referencia estándar</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="ci cd">
+  <h3 id="ci-cd">CI/CD</h3>
+  <p>Integración y Entrega/Despliegue Continuo. Prácticas de desarrollo para automatizar la ejecución de pruebas y cambios de código.</p>
+  <p>
+    <small>
+      <Link to="/development/complete-example-project">Mencionado por primera vez en: Proyecto de Ejemplo Completo</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="cold start">
+  <h3 id="cold-start">Cold Start</h3>
+  <p>La latencia de inicio que ocurre cuando una Edge Function es ejecutada por primera vez en un edge node o luego de permanecer desactivada. El runtime debe inicializarse antes de manejar esa solicitud.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/execution-model">Mencionado por primera vez en: Modelo de Ejecución</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="edge application">
+  <h3 id="edge-application">Edge Application</h3>
+  <p>Una aplicación construida, distribuida y asegurada en el borde (edge) utilizando los componentes base de Azion.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/functions-in-platform-architecture">Mencionado por primera vez en: Funciones en la Arquitectura</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="edge firewall">
+  <h3 id="edge-firewall">Edge Firewall</h3>
+  <p>Capa de seguridad flexible orientada a proteger los recursos directamente en los edge nodes locales y programables.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/functions-in-platform-architecture">Mencionado por primera vez en: Funciones en la Arquitectura</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="edge function">
+  <h3 id="edge-function">Edge Function</h3>
+  <p>Pieza de lógica programable para la red Azion que se procesa muy de cerca al espectador final generando extremadamente bajas latencias.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/application-integration">Mencionado por primera vez en: Integración de Aplicaciones</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="edge node">
+  <h3 id="edge-node">Edge Node</h3>
+  <p>Clústeres y nodos distribuidos de forma global que interactúan directamente con tu código de servidor remoto y clientes finales en lugar de sobrecargar la latencia del origen global.</p>
+  <p>
+    <small>
+      <Link to="/advanced/performance-optimization">Mencionado por primera vez en: Optimización de Rendimiento</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="function instance">
+  <h3 id="function-instance">Function Instance</h3>
+  <p>Versión en ejecución de una función combinando un bloque lógico fundamental de código a su variable contextual, y ambiente o metadatos de argumentos de configuración.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/configuration">Mencionado por primera vez en: Configuración</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="http">
+  <h3 id="http">HTTP</h3>
+  <p>Hypertext Transfer Protocol. Estándar elemental base global intertextual para la comunicación de sistemas en línea.</p>
+  <p>
+    <small>
+      <Link to="/limits">Mencionado por primera vez en: Límites</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/es/docs/Web/HTTP" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Referencia estándar</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="https">
+  <h3 id="https">HTTPS</h3>
+  <p>La alternativa cifrada e inherentemente segura del protocolo web HTTP.</p>
+  <p>
+    <small>
+      <Link to="/limits">Mencionado por primera vez en: Límites</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/es/docs/Glossary/HTTPS" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Referencia estándar</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="json">
+  <h3 id="json">JSON</h3>
+  <p>JavaScript Object Notation. Un modelo flexible popularmente utilizado que presenta la manipulación e intercambio de colecciones ligeras de llaves-valores o arreglos.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/what-is-a-function-instance">Mencionado por primera vez en: ¿Qué es una Instancia de Función?</Link>
+      {' | '}
+      <a href="https://www.json.org/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Referencia estándar</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="kv key value">
+  <h3 id="kv">KV</h3>
+  <p>Almacenamiento tipo Llave-Valor. Paradigma que encapsula datos e identificadores persistidos bajo una combinación estrictamente conectada identificador único/alojamiento respectivo.</p>
+  <p>
+    <small>
+      <Link to="/development/complete-example-project">Mencionado por primera vez en: Proyecto de Ejemplo Completo</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="request phase">
+  <h3 id="request-phase">Request Phase</h3>
+  <p>Periodo de etapa analítica desde que el cliente interactúa con la aplicación (recibiendo intercepción inicial HTTP) que procede lógicamente modificando las necesidades hacia recursos remotos origen.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/application-integration">Mencionado por primera vez en: Integración de Aplicaciones</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="response phase">
+  <h3 id="response-phase">Response Phase</h3>
+  <p>Sucesión interactiva natural tras una respuesta retornada. Ajustándose o interceptando para predeterminar y optimizar resultados distribuidos dirigidos a respuestas locales salientes.</p>
+  <p>
+    <small>
+      <Link to="/platform-integration/application-integration">Mencionado por primera vez en: Integración de Aplicaciones</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="rules engine">
+  <h3 id="rules-engine">Rules Engine</h3>
+  <p>La máquina interna y organizador sistemático que orquesta condicionantes orientadores para decidir dónde/cómo correr dinámicas del servicio Edge específico.</p>
+  <p>
+    <small>
+      <Link to="/runtime-reference/configuration">Mencionado por primera vez en: Configuración</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="subrequest">
+  <h3 id="subrequest">Subrequest</h3>
+  <p>Iteración subordinada interna solicitando información web y peticiones enviadas remotamente del contexto inicial vía comando nativo de interfaz como tipo <code>fetch()</code>.</p>
+  <p>
+    <small>
+      <Link to="/advanced/performance-optimization">Mencionado por primera vez en: Optimización de Rendimiento</Link>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="web apis">
+  <h3 id="web-apis">Web APIs</h3>
+  <p>Modelos predefinidos estructurantes listos orientados a resolver comunicaciones con elementos genéricos preestablecidos como el <code>Request</code> original.</p>
+  <p>
+    <small>
+      <Link to="/advanced/webassembly">Mencionado por primera vez en: WebAssembly</Link>
+      {' | '}
+      <a href="https://developer.mozilla.org/es/docs/Web/API" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Referencia estándar</a>
+    </small>
+  </p>
+  <hr />
+</div>
+
+<div className="glossary-term" data-term="webassembly wasm">
+  <h3 id="webassembly">WebAssembly (Wasm)</h3>
+  <p>Modelo empaquetado seguro e interpolable posibilitando códigos nativos originados globalmente por otros lenguajes correr libremente con inmediatez.</p>
+  <p>
+    <small>
+      <Link to="/advanced/webassembly">Mencionado por primera vez en: WebAssembly</Link>
+      {' | '}
+      <a href="https://webassembly.org/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Referencia estándar</a>
+    </small>
+  </p>
+  <hr />
+</div>
