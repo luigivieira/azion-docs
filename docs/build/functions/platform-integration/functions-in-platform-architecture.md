@@ -8,48 +8,53 @@ description: How Functions fit into the broader Azion platform architecture.
 
 On the Azion platform, Edge Functions do not exist in isolation. They are part of a hierarchical architecture designed to provide centralized management, global distribution, and event-driven execution.
 
+At a high level, a request flows like this:
+
+> **User** → **Workload** (domain) → **Edge Application or Edge Firewall** → **Rules Engine** → **Edge Function**
+
 ---
 
 ## 1. The Architectural Hierarchy
 
 To run a function on the Azion Edge Network, it must be integrated into the following structure:
 
-**Workload > Edge Application / Edge Firewall > Edge Function**
+**Workload > Edge Application / Edge Firewall > Function Instance > Edge Function**
 
-- **Workload**: The top-level container that manages domains, DNS records, digital certificates, and network protocols. It ensures your application is reachable and secure. For more details, see [Deployment](../../applications/deployment.md).
-- **Edge Application**: The foundation for building web applications. It serves as the primary context for request processing, caching, and routing. See the [Edge Applications Overview](../../applications/overview.md).
-- **Edge Firewall**: A security-specific context where you can implement custom protection logic, rate limiting, and access control.
+- **Workload**: The top-level container that manages domains, DNS records, digital certificates, and network protocols. It is the entry point for all traffic.
+- **Edge Application**: The foundation for request processing, caching, and routing. Functions used for business logic — redirects, personalization, API proxying — live here.
+- **Edge Firewall**: A security-focused context for implementing custom protection logic, rate limiting, and access control. Functions here execute before requests even reach the application layer.
+- **Function Instance**: A reference that binds a specific function to an application or firewall. This is what the Rules Engine invokes. See [What Is a Function Instance](./what-is-a-function-instance.md).
 
 ## 2. Triggering Functions: The Rules Engine
 
-Functions are executed based on logic defined in the **Rules Engine**. Instead of running for every single request by default, you create rules that determine _when_ and _where_ a function should be triggered.
+Functions are not executed for every request by default. The **Rules Engine** determines _when_ and _where_ a function runs, using a **Criteria & Behavior** model:
 
-The Rules Engine uses a **Criteria & Behavior** model:
+1. **Criteria**: Conditions evaluated against the request — for example, "if the path starts with `/api`".
+2. **Behavior**: The action taken when criteria are met — for example, "Run Function Instance X".
 
-1.  **Criteria**: Conditions based on the request (e.g., "if the path starts with `/api`").
-2.  **Behavior**: The action to take when criteria are met (e.g., "Run Edge Function X").
+This conditional model means you have precise control over execution. A single application can have multiple rules targeting different paths, with each rule invoking a different function instance.
 
-For a deep dive into how rules work, check [Routing and Rules](../../applications/routing-and-rules.md).
+For more on how rules work, see [Linking Instances to Rules](./linking-instances-to-rules.md).
 
 ## 3. Execution Contexts and Event Types
 
-Edge Functions are event-driven. Depending on where they are instantiated, they respond to different types of events:
+Edge Functions are event-driven. The events they receive depend on where they are instantiated.
 
 ### Fetch Events (Edge Applications)
 
-Most functions operate within an Edge Application and respond to `fetch` events. These are triggered by incoming HTTP requests. In this context, functions can manipulate request/response headers, cookies, and bodies in two phases:
+Functions inside an Edge Application respond to `fetch` events, triggered by incoming HTTP requests. They can inspect and modify requests and responses in two phases:
 
-- **Request Phase**: Process data before it reaches the cache or the origin.
-- **Response Phase**: Modify data before it is delivered to the end-user.
+- **Request Phase**: Runs before the request reaches the cache or origin. Use this for authentication checks, redirects, request rewriting, or computing a response directly.
+- **Response Phase**: Runs after the origin or cache produces a response, before delivery to the client. Use this for header injection, response transformation, or logging.
 
 ### Firewall Events (Edge Firewall)
 
-Functions can also be used for security logic. In this context, they listen for `firewall` events. This allows for complex filtering, such as verifying custom signatures or implementing advanced bot mitigation logic before the request is even passed to the application layer.
+Functions inside an Edge Firewall respond to `firewall` events. They execute at the network edge before the request is handed off to the application layer — making them ideal for bot mitigation, custom signature verification, IP blocking, and other security logic.
 
-## 4. Why this matters?
+## 4. Why This Architecture Matters
 
-This architecture ensures that functions are:
+This layered design ensures that functions are:
 
-- **Scalable**: Managed as part of high-level workloads.
-- **Controllable**: Triggered only when necessary via the Rules Engine.
-- **Extensible**: Easily integrated with other Azion products like Edge Storage or Image Processor through the same Application foundation.
+- **Conditional**: The Rules Engine prevents unnecessary executions. Functions only run when relevant criteria are matched, keeping latency and compute usage low.
+- **Reusable**: The same function code can be instantiated in multiple applications or firewalls, each with its own configuration via the Arguments JSON.
+- **Composable**: Functions coexist with other behaviors in the Rules Engine — caching, compression, redirects — giving you fine-grained control over the full request/response lifecycle.
