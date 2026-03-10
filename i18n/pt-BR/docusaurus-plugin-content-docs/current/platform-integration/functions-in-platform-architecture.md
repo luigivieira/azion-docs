@@ -12,6 +12,8 @@ Em alto nível, uma requisição flui assim:
 
 > **Usuário** → **Workload** (domínio) → **Edge Application ou Edge Firewall** → **Rules Engine** → **Edge Function**
 
+![Arquitetura da Plataforma Azion](https://github.com/luigivieira/azion-docs/releases/download/media-v1/general-architecture-pt-br.jpg)
+
 ---
 
 ## 1. A Hierarquia Arquitetural

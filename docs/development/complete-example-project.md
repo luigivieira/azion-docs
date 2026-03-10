@@ -37,6 +37,21 @@ The project follows a modern TypeScript structure:
 
 The project leverages advanced Azion Runtime features to achieve high performance and low latency:
 
+### How it Works
+
+When a request arrives at the edge function (e.g., `GET /api/spell`), the platform executes the following flow:
+
+1. **Validation & Index Lookup**: The edge checks for required parameters (`slug` and `locale`) and verifies the slug against a KV-cached index of all valid Open5e spells. If invalid, it returns a `400` or `404` response.
+2. **Cache Lookup**: The edge checks **Azion KV Storage** for the requested `slug + locale` pair.
+   - **Cache Hit**: Returns a `200 OK` with the translated spell immediately, making no external calls.
+3. **Cache Miss & Background Processing**: If the requested locale format is not cached, the response returns a `202 Accepted` immediately, and the edge platform securely initiates a background process (worker) using `event.waitUntil()`.
+   - The background worker fetches the spell from the Open5e API.
+   - It translates the content using the Groq AI API.
+   - It caches the resulting translated spell in Azion KV Storage.
+4. **Client Polling**: The client receives a `202 Accepted` status with a `progress` field indicating the background task is running, and should retry the request shortly until a `200 OK` is received.
+
+![Example Project Architecture](https://github.com/luigivieira/azion-docs/releases/download/media-v1/example-architecture.jpg)
+
 ### 1. Centralized State with KV Storage
 The project uses **Azion KV Storage** as a centralized database. This infrastructure is fully managed by the Azion platform:
 - **Local Reads**: The platform automatically replicates data to the edge nodes closest to users.

@@ -12,6 +12,8 @@ At a high level, a request flows like this:
 
 > **User** → **Workload** (domain) → **Edge Application or Edge Firewall** → **Rules Engine** → **Edge Function**
 
+![Azion Platform Architecture](https://github.com/luigivieira/azion-docs/releases/download/media-v1/general-architecture.jpg)
+
 ---
 
 ## 1. The Architectural Hierarchy

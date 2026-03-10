@@ -12,6 +12,8 @@ A alto nivel, el flujo de una solicitud es el siguiente:
 
 > **Usuario** → **Workload** (dominio) → **Edge Application o Edge Firewall** → **Rules Engine** → **Edge Function**
 
+![Arquitectura de la Plataforma Azion](https://github.com/luigivieira/azion-docs/releases/download/media-v1/general-architecture-es-es.jpg)
+
 ---
 
 ## 1. La Jerarquía Arquitectónica
