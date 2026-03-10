@@ -10,6 +10,10 @@ vi.mock('@theme-original/DocItem', () => ({
 import DocItemWrapper from '../DocItem/index';
 import IsInDocProviderContext from '../../contexts/IsInDocProviderContext';
 
+// The real Props type requires `route` and `content`, but those are handled by
+// the @theme-original/DocItem mock above. Cast to a children-only type for testing.
+const DocItemWrapperTest = DocItemWrapper as unknown as React.ComponentType<{children: React.ReactNode}>;
+
 function ContextProbe() {
   const value = useContext(IsInDocProviderContext);
   return <span data-testid="probe">{String(value)}</span>;
@@ -18,9 +22,9 @@ function ContextProbe() {
 describe('DocItemWrapper (IsInDocProviderContext)', () => {
   it('sets IsInDocProviderContext to true for children', () => {
     render(
-      <DocItemWrapper>
+      <DocItemWrapperTest>
         <ContextProbe />
-      </DocItemWrapper>,
+      </DocItemWrapperTest>,
     );
     expect(screen.getByTestId('probe').textContent).toBe('true');
   });
@@ -32,9 +36,9 @@ describe('DocItemWrapper (IsInDocProviderContext)', () => {
 
   it('renders its children', () => {
     render(
-      <DocItemWrapper>
+      <DocItemWrapperTest>
         <span>child content</span>
-      </DocItemWrapper>,
+      </DocItemWrapperTest>,
     );
     expect(screen.getByText('child content')).toBeInTheDocument();
   });
