@@ -93,7 +93,10 @@ function DocBreadcrumbs(): ReactNode {
   const ulRef = useRef<HTMLUListElement>(null);
 
   const canCollapse = isMobile && !!breadcrumbs && breadcrumbs.length > 2;
+  // 2-item breadcrumb: no middle items to hide, but last item may still need truncation
+  const canMeasure = isMobile && !!breadcrumbs && breadcrumbs.length >= 2;
   const shouldCollapse = canCollapse && !expanded && overflows;
+  const shouldTruncateLast = canMeasure && !canCollapse && overflows;
 
   // Reset when switching to desktop
   useEffect(() => {
@@ -104,12 +107,12 @@ function DocBreadcrumbs(): ReactNode {
   }, [isMobile]);
 
   // Measure whether all items overflow their container.
-  // Only runs when all items are rendered (shouldCollapse = false) to get
-  // accurate measurements. Uses useLayoutEffect so the browser doesn't paint
+  // Only runs when all items are rendered (shouldCollapse/shouldTruncateLast = false)
+  // to get accurate measurements. Uses useLayoutEffect so the browser doesn't paint
   // the expanded state before potentially collapsing it.
   useLayoutEffect(() => {
-    if (shouldCollapse) return; // collapsed — no need to re-measure
-    if (!canCollapse) {
+    if (shouldCollapse || shouldTruncateLast) return; // display mode already determined
+    if (!canMeasure) {
       setOverflows(false);
       return;
     }
@@ -130,7 +133,7 @@ function DocBreadcrumbs(): ReactNode {
     const ro = new ResizeObserver(measure);
     ro.observe(ul);
     return () => ro.disconnect();
-  }, [canCollapse, shouldCollapse]);
+  }, [canMeasure, shouldCollapse, shouldTruncateLast]);
 
   if (!breadcrumbs) {
     return null;
@@ -150,7 +153,7 @@ function DocBreadcrumbs(): ReactNode {
           message: 'Breadcrumbs',
           description: 'The ARIA label for the breadcrumbs',
         })}>
-        <ul ref={ulRef} className={clsx('breadcrumbs', {'breadcrumbs--collapsed': shouldCollapse})}>
+        <ul ref={ulRef} className={clsx('breadcrumbs', {'breadcrumbs--collapsed': shouldCollapse || shouldTruncateLast})}>
           <HomeBreadcrumbItem />
           {itemsToRender.map((item, idx) => {
             if (item === null) {

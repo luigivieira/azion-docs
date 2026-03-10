@@ -29,6 +29,11 @@
   transition: opacity 0.15s ease;
 }
 
+.next a {
+  align-items: center;
+  text-align: right;
+}
+
 .prev a:hover,
 .next a:hover {
   opacity: 0.75;
