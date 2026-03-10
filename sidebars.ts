@@ -43,7 +43,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'development/function-structure',
         'development/handling-requests-and-responses',
-        'development/environment-variables',
+        'development/function-arguments-and-environment-variables',
         'development/calling-external-apis',
         'development/local-development',
       ],

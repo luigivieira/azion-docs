@@ -139,7 +139,7 @@ addEventListener("fetch", event => {
 });
 ```
 
-Arguments are configured per Function Instance, which means the same function code can behave differently depending on where it is instantiated. See [Environment Variables](../development/environment-variables.md) for the full pattern.
+Arguments are configured per Function Instance, which means the same function code can behave differently depending on where it is instantiated. See [Function Arguments and Environment Variables](../development/function-arguments-and-environment-variables.md) for the full pattern.
 
 ---
 
@@ -170,4 +170,4 @@ There is no writable file system. Edge Functions cannot read from or write to di
 
 - [Runtime APIs](./runtime-apis.md) — complete list of available APIs.
 - [Execution Model](./execution-model.md) — how invocations are scheduled and what limits apply.
-- [Environment Variables](../development/environment-variables.md) — how to pass configuration to functions.
+- [Function Arguments and Environment Variables](../development/function-arguments-and-environment-variables.md) — how to pass configuration to functions.

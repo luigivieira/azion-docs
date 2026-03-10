@@ -55,7 +55,7 @@ addEventListener("fetch", event => {
 });
 ```
 
-The API key is passed through `event.args` — never hardcoded in the function source. See [Environment Variables](../development/environment-variables.md) for the full pattern.
+The API key is passed through `event.args` — never hardcoded in the function source. See [Function Arguments and Environment Variables](../development/function-arguments-and-environment-variables.md) for the full pattern.
 
 ---
 
@@ -376,5 +376,5 @@ try {
 ## Related
 
 - [Calling External APIs](../development/calling-external-apis.md) — general patterns for outbound `fetch()` calls.
-- [Environment Variables](../development/environment-variables.md) — storing API keys securely in Function Instance Arguments.
+- [Function Arguments and Environment Variables](../development/function-arguments-and-environment-variables.md) — storing API keys securely in Function Instance Arguments.
 - [Performance Optimization](./performance-optimization.md) — streaming, caching, and parallel requests.

@@ -55,7 +55,7 @@ addEventListener("fetch", (event) => {
 });
 ```
 
-La clave de API se pasa a través de `event.args` — nunca se incluye directamente en el código fuente de la función. Consulte [Variables de Entorno](../development/environment-variables.md) para ver el patrón completo.
+La clave de API se pasa a través de `event.args` — nunca se incluye directamente en el código fuente de la función. Consulte [Argumentos de Función y Variables de Entorno](../development/function-arguments-and-environment-variables.md) para ver el patrón completo.
 
 ---
 
@@ -382,5 +382,5 @@ try {
 ## Relacionado
 
 - [Llamada a APIs Externas](../development/calling-external-apis.md) — patrones generales para llamadas `fetch()` salientes.
-- [Variables de Entorno](../development/environment-variables.md) — almacenamiento de claves de API de forma segura en los Argumentos de la Instancia de Función.
+- [Argumentos de Función y Variables de Entorno](../development/function-arguments-and-environment-variables.md) — almacenamiento de claves de API de forma segura en los Argumentos de la Instancia de Función.
 - [Optimización del Rendimiento](./performance-optimization.md) — streaming, caché y solicitudes paralelas.

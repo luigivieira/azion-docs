@@ -107,6 +107,6 @@ Recommended practices for safe deployments:
 
 ## Related
 
-- [Environment Variables](../development/environment-variables.md) — how to use `event.args` for secrets and configuration.
+- [Function Arguments and Environment Variables](../development/function-arguments-and-environment-variables.md) — how to use `event.args` for secrets and configuration.
 - [Function Instance](../platform-integration/what-is-a-function-instance.md) — detailed explanation of function instances.
 - [Linking Instances to Rules](../platform-integration/linking-instances-to-rules.md) — how to activate a function for specific requests.

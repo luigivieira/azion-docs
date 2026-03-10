@@ -107,6 +107,6 @@ Prácticas recomendadas para despliegues seguros:
 
 ## Relacionado
 
-- [Variables de Entorno](../development/environment-variables.md) — cómo usar `event.args` para secretos y configuración.
+- [Argumentos de Función y Variables de Entorno](../development/function-arguments-and-environment-variables.md) — cómo usar `event.args` para secretos y configuración.
 - [Instancia de Función](../platform-integration/what-is-a-function-instance.md) — explicación detallada de las instancias de función.
 - [Vinculación de Instancias a Reglas](../platform-integration/linking-instances-to-rules.md) — cómo activar una función para solicitudes específicas.

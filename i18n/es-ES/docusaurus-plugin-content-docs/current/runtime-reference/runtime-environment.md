@@ -142,7 +142,7 @@ addEventListener("fetch", (event) => {
 });
 ```
 
-Los argumentos se configuran por Instancia de Función, lo que significa que el mismo código de función puede comportarse de forma diferente dependiendo de dónde se instancie. Consulte [Variables de Entorno](../development/environment-variables.md) para ver el patrón completo.
+Los argumentos se configuran por Instancia de Función, lo que significa que el mismo código de función puede comportarse de forma diferente dependiendo de dónde se instancie. Consulte [Argumentos de Función y Variables de Entorno](../development/function-arguments-and-environment-variables.md) para ver el patrón completo.
 
 ---
 
@@ -173,4 +173,4 @@ No existe un sistema de archivos de escritura. Las Edge Functions no pueden leer
 
 - [APIs del Runtime](./runtime-apis.md) — lista completa de las APIs disponibles.
 - [Modelo de Ejecución](./execution-model.md) — cómo se programan las invocaciones y qué límites se aplican.
-- [Variables de Entorno](../development/environment-variables.md) — cómo pasar la configuración a las funciones.
+- [Argumentos de Función y Variables de Entorno](../development/function-arguments-and-environment-variables.md) — cómo pasar la configuración a las funciones.
