@@ -27,7 +27,23 @@ npm install -g azion
 
 ## 2. Authenticating
 
-Log in with your API token so the CLI can sync your functions with your account:
+You can log in interactively or by providing an API token. Running `azion login` without arguments is typically the easiest method as it allows you to authenticate via your browser:
+
+```bash
+azion login
+```
+
+The CLI will prompt you:
+1. `🤔 Would you like to create a new profile for this login? (Y/n)`
+2. `? Choose a login method:` (Select **Log in via browser**)
+
+Follow the link provided to authenticate in your browser. Once complete, your token is saved to your local profile.
+
+Alternatively, you can provide a pre-generated token:
+
+:::tip[Creating a Personal Token]
+To create a token, log in to the [Azion Console](https://console.azion.com), click on your **User Menu** (top-right corner), select **Personal Token**, and click **Create Personal Token**.
+:::
 
 ```bash
 azion login --token YOUR_PERSONAL_TOKEN
@@ -175,3 +191,13 @@ Then reference them in your `tsconfig.json`:
 ```
 
 This gives you full autocomplete and type checking for `Request`, `Response`, `FetchEvent`, and other runtime globals.
+
+---
+
+## Next Steps
+
+Now that you've mastered the basics of local development, see how these patterns come together in a real-world application:
+
+:::info[Complete Example Project]
+Check out the [Complete Example Project](./complete-example-project.md) page for a deep dive into a semantic search engine built with Azion Edge Functions, featuring automated testing, multi-environment deployment, and VS Code integration.
+:::

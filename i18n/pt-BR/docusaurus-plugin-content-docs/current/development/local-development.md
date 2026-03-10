@@ -27,10 +27,26 @@ npm install -g azion
 
 ## 2. Autenticando
 
-Faça login com seu token de API para que a CLI possa sincronizar suas functions com sua conta:
+Você pode fazer login de forma interativa ou fornecendo um token de API. Executar `azion login` sem argumentos é geralmente o método mais simples, pois permite que você se autentique pelo seu navegador:
 
 ```bash
-azion login --token YOUR_PERSONAL_TOKEN
+azion login
+```
+
+A CLI irá perguntar:
+1. `🤔 Would you like to create a new profile for this login? (Y/n)`
+2. `? Choose a login method:` (Selecione **Log in via browser**)
+
+Siga o link fornecido para se autenticar no seu navegador. Uma vez concluído, seu token é salvo no seu perfil local.
+
+Como alternativa, você pode fornecer um token pré-gerado:
+
+:::tip[Criando um Personal Token]
+Para criar um token, acesse o [Azion Console](https://console.azion.com), clique no seu **Menu de Usuário** (canto superior direito), selecione **Personal Token** e clique em **Create Personal Token**.
+:::
+
+```bash
+azion login --token SEU_TOKEN_PESSOAL
 ```
 
 ---
@@ -175,3 +191,13 @@ Em seguida, referencie-as no seu `tsconfig.json`:
 ```
 
 Isso fornece autocompletar completo e verificação de tipos para `Request`, `Response`, `FetchEvent` e outros globais do runtime.
+
+---
+
+## Próximos Passos
+
+Agora que você dominou o básico do desenvolvimento local, veja como esses padrões se unem em uma aplicação real:
+
+:::info[Projeto de Exemplo Completo]
+Confira a página do [Projeto de Exemplo Completo](./complete-example-project.md) para um mergulho profundo em um mecanismo de busca semântica construído com Azion Edge Functions, apresentando testes automatizados, deploy em múltiplos ambientes e integração com o VS Code.
+:::

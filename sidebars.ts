@@ -46,6 +46,7 @@ const sidebars: SidebarsConfig = {
         'development/function-arguments-and-environment-variables',
         'development/calling-external-apis',
         'development/local-development',
+        'development/complete-example-project',
       ],
     },
     {
