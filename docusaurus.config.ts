@@ -99,8 +99,8 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {label: 'What are Functions?', to: '/build/functions/overview/what-are-functions'},
-            {label: 'Getting Started', to: '/build/functions/getting-started/prerequisites'},
+            {label: 'What are Functions?', to: '/overview/what-are-functions'},
+            {label: 'Getting Started', to: '/getting-started/prerequisites'},
             {label: 'Platform Integration', to: '/category/platform-integration'},
             {label: 'Changes Rationale', to: '/rationale'},
           ],
