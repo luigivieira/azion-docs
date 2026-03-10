@@ -3,13 +3,13 @@
     "message": "Azion Documentation",
     "description": "The title in the navbar"
   },
-  "item.label.Changes Rationale": {
-    "message": "Changes Rationale",
-    "description": "Navbar item with label Changes Rationale"
+  "item.label.Rationale": {
+    "message": "Rationale",
+    "description": "Navbar item with label Rationale"
   },
-  "item.label.Proposed Docs": {
-    "message": "Proposed Docs",
-    "description": "Navbar item with label Proposed Docs"
+  "item.label.Documentation": {
+    "message": "Documentación",
+    "description": "Navbar item with label Documentation"
   },
   "item.label.GitHub": {
     "message": "GitHub",

@@ -84,13 +84,13 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'rationaleSidebar',
           position: 'left',
-          label: 'Changes Rationale',
+          label: 'Rationale',
         },
         {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Proposed Docs',
+          label: 'Documentation',
         },
         {
           type: 'localeDropdown',
@@ -112,7 +112,7 @@ const config: Config = {
             {label: 'What are Functions?', to: '/overview/what-are-functions'},
             {label: 'Getting Started', to: '/getting-started/prerequisites'},
             {label: 'Platform Integration', to: '/category/platform-integration'},
-            {label: 'Changes Rationale', to: '/rationale'},
+            {label: 'Rationale', to: '/rationale'},
           ],
         },
         {

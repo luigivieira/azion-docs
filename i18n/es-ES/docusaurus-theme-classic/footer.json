@@ -36,8 +36,12 @@
     "description": "The label of footer link with label=GitHub linking to https://github.com/luigivieira/azion-docs"
   },
   "link.item.label.Real-world example (open5e)": {
-    "message": "Real-world example (open5e)",
+    "message": "Ejemplo real (open5e)",
     "description": "The label of footer link with label=Real-world example (open5e) linking to https://github.com/luigivieira/augmentedopen5e"
+  },
+  "link.item.label.Rationale": {
+    "message": "Rationale",
+    "description": "The label of footer link with label=Rationale linking to /rationale"
   },
   "copyright": {
     "message": "Copyright © 2026 Luigi Vieira. Built with Docusaurus.",
