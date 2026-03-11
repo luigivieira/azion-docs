@@ -57,40 +57,43 @@ Para usuarios en estaciones de desarrollo:
 
 ### Glosario y Cuadros Explicativos
 - **Glosario Automático:** Sabemos que las siglas generan miedos al aprendizaje. Estructure la creación automatizada de un glosario con significados técnicos y ligas cruzadas.
-- **Diagramas Generados IA:** Complemente esquemas y modelos por IA para el recorrido arquitectónico general e interacciones estructurales sobre el proyecto de base.
+- **Diagramas Generados IA:** Complemente esquemas y modelos por IA## 3. El Proyecto de Referencia: Augmented Open5e
+
+Para validar la documentación, construí **[Augmented Open5e](https://github.com/luigivieira/augmentedopen5e)** - un proyecto de código abierto que utiliza Edge Functions para traducir las reglas de D&D a través de LLMs. La idea era experimentar con un caso de uso más complejo de las funciones disponibles en la plataforma. Utiliza KV Storage, `waitUntil` (para el procesamiento asíncrono en segundo plano), y la única razón por la que no utiliza AI Inference de Azion es porque encontré problemas durante las pruebas. Esto sirve como un buen recordatorio para mejorar la experiencia del desarrollador allí: los mensajes de error deben indicar explícitamente la razón técnica por la que un modelo falló, en lugar de sugerir vagamente que no existe o no está permitido. También modifiqué manualmente la interfaz de usuario de este proyecto basándome en los comentarios de los compañeros (por ejemplo, modificando los mensajes del indicador de progreso para la tarea `waitUntil` en segundo plano para manejar mejor las expectativas del usuario y para que no se asemejen visualmente a mensajes de error - especialmente considerando que la API devuelve un código `202 Accepted` de forma correcta para indicar que el trabajo está en progreso).
+
+### Compensaciones: API Edge Monolítica vs. Micro-funcions
+Para la arquitectura del proyecto, elegí una **API Edge Monolítica** en la que una única función maneja todos los endpoints basándose en las reglas de enrutamiento de Azion y en la ruta de la solicitud.
+* **Pros:** Un solo despliegue, reutilización de código perfecta (autenticación, validación de JSON) y menos "arranques en frío" generales (una solicitud en `/api/monsters` calienta el Isolate de V8 para una solicitud posterior en `/api/spells`).
+* **Contras:** El tamaño del bundle final es ligeramente mayor.
+* **¿Por qué no usar Micro-functions?** Construir una función separada para cada endpoint crea una inmensa sobrecarga de gestión (docenas de reglas e instancias de consola separadas) y obliga a duplicar las bibliotecas.
+
+*(Nota: Si Azion introduce desencadenantes que no sean HTTP en el futuro, como los cron jobs, la arquitectura ideal separaría esos procesos del Monolito HTTP).*
+
+### Despliegue mediante CLI vs Inducción en Consola
+Mientras que el proyecto en sí utiliza la CLI de Azion, los "Primeros Pasos" de la documentación guían intencionalmente a los usuarios a través de la Consola. Para los principiantes absolutos, las interfaces visuales ofrecen una experiencia de inducción más intuitiva y tranquilizadora. Sin embargo, la página "Desarrollo Local / Preview" se enfoca directamente en cómo hacer esto mediante la CLI, y agregar un tutorial completo de inducción que se enfoque en la CLI sería un excelente próximo paso.
 
 ---
 
-## 3. El Proyecto de Referencia: Augmented Open5e
+## 4. El Proceso de Desarrollo y el Uso de Inteligencia Artificial
 
-Para validar la reescritura de los documentos construí el proyecto **[Augmented Open5e](https://github.com/luigivieira/augmentedopen5e)** - un experimento aplicable Open-Source de funcionalidad Serverless integral ejecutando codificaciones Edge Functions con uso de Reglas tipo D&D cruzadas a un uso intenso con procesamiento LLM. Logrando así probar el límite de su arquitectura nativa: Usos profundos referenciando el Storage "Key-Values / KV" y la espera funcional para resoluciones de API y funciones sin bloquear con `waitUntil` limitándose de manera aislada solamente sobre imposibilidades técnicas frente al "AI Inference". Aproveché esos fallos nativos limitantes del motor base para invitar fuertemente en este raciocinio al ecosistema de directrices del Azion Panel (Error Logs / Developers Logs Analytics) informando por consiguiente que es imperativo ser más precisos con los dev teams frente a los Errores Técnicos y no culpar vagas "Permisologías Limitadas" si un Modelo Local nativo por API llega a fallar. Igualmente iteré el diseño, en especial para manejar correctamente las indicaciones visuales (loaders de procesos) de carga en base al retorno de `202 Accepted` garantizando una correcta gestión del usuario previniendo percepciones irreales visuales (falsos errores del Loader de proceso Background `WaitUntil`).
-
-### API Edge Monolítica VS Funciones Miniaturizadas (Micro-Funcs)
-Opté el estructuramiento de código aplicando el concepto único Macro Central. En un Arquitectura general por "Monolito HTTP API o Single Endpoint" logrando un simple flujo manejado al núcleo interno del Engine y Rules.
-* **Prós:** Inversiones exclusivas hacia a una labor principal simplificada - Una sola compilación Deploy/Auth. Logros vitales erradicando drásticamente perdidas asíncronas o Demoras de "Cold-Starts" - pues la consulta central única de `/api/1` acelera e inicializa (precalienta las Islas de aislamientos `Isolate-V8 Servers`) facilitando llamadas ultra rápidas inmediatas en los `routes` adyacentes de APIs .
-* **Contras:** Aumento moderado de tamaño pesado global sobre las paqueterías bundles exportadas.
-* **¿Por qué Evitar Funciones Múltiples Reducidas?:** Arquitecturas diminutas distribuidas separadas escalan las gestiones a pesadillas laberínticas, requiriendo implementaciones manuales clonadas en la Console Rule Panel sumado a exigidas copias y requerimientos excesivos a re-escrituras locales en las exportaciones de Javascript.
-
-### Console vs CLI Empleo
-Incluso usando diariamente para el sistema, el ambiente y empleo del recurso principal CLI, optamos en la inducción orientar principalmente la atención de iniciados al ecosistema Gráfico Consola "Panel Interface"; reduciendo fricciones iniciales técnicas que asustan al iniciante de Terminales CLI locales. Entendiendo aun pero que, a lo mismo también en "Preview Environments", su aplicación central al desarrollarse las pruebas directrices, recaen exclusivamente a los Command Lines y CLIs y valdrían aditividad futuras crear un bloque enterísimo focalizado de inicio y Getting Started de despliegues inmediatos e absolutos desde Terminales.
+Como mencioné anteriormente, la IA fue una colaboradora muy poderosa.
+- Diseñé la arquitectura del código, pero la IA generó alrededor del 90% del mismo bajo mi estricta revisión, testings manuales y refinamiento iterativo.
+- La IA ayudó a formatear esta documentación, pero las decisiones estratégicas (la narrativa centrada en la "Función", descartar la estructura anterior, implementar atajos de teclado) fueron totalmente mías.
+- Aunque usé la IA para generar los diagramas, **todos los videos tutoriales fueron creados completamente a mano** utilizando OBS Studio con plugins en Mac para los efectos, y fueron editados en Wondershare Filmora.
 
 ---
 
-## 4. Colaboración Con El Desarrollo Y La Asistencia de Inteligencia Artificiales
+## 5. Visión para el Futuro (La lista de "Si tuviera más tiempo")
 
-- Mientras que por la codificación se originó ~%90 de implementaciones u elaborados brutos de los modelos base (soportado e interconectados bajo revisión rigurosa iterando testeados humanos míos); las elecciones primarias teóricas y narrativas estratégicas absolutas (Function First / Descartes Estructurales y Resoluciones de Usabilidad Web o Menús) fueron purísimas exclusividades mías. 
-- Y el uso visual general de Modelajes Asistidos Y Renderizados/Diagramados aplicables se complementa al contraste puro E 100% humanístico / Orgánico en Edición o Cortes puramente Manuales usando plugins OS X / OBS de Apple / Resoluciones y Montajes Finales en editores Wondershare (Filmora). 
+Si esto fuera un proyecto a gran escala y de largo plazo, estas son las iniciativas que priorizaría para mejorar la Experiencia del Desarrollador en Azion:
 
----
-
-## 5. El Panorama Hacia A Futuro
-
-Los aditamentos posteriores propuestos a futuro ideal serian enfocados en las siguientes prioridades:
-
-* **Interacciones Corregibles y Feedbacks "En Sitio / Textos Mismos" E In-Pages:** Reportes e O Creaciones O De A Tickets directos basados y enviados al hacer y "Clicks en o textos equivocados".
-* **Sistemas De E Debates Puros (Comentarios) O en y O Por Comunidades U E Para Páginas Base Final:** Como en formatos Microsoft y PHP manuales, interacciones comunitarias Dev a Devs para soporte nativo local De Página Mismo.
-* **Scrollbars Inteligentes UI y Side-Menus:** Recolocando/focalizando vistas automáticas O directos De los Y Menús al Y abrir U a links E directivos U externos e En ramas Profundas de a Las O Y Docs. 
-* **Filtros e Avanzados O A Búsquedas Mistas O Por E Categoría:** Funcionalidad granular de los excelentes y actuales Motores presentes en la plataforma Principal Actual De Azion.
-* **Resoluciones Y Exhibición - Y - Expositores Públicos:** Enfoques gamificados (Medallas por aportes comunitarios). Visibilización a En Los Casos Exitosos Públicos Reales De Aplicatividad Compleja.
-* **Y Chequeos / Auditorías Plenas en Accesibilidad y Conraste de Etiquetas ARiA (Visual-Blindness).**
+* **Correcciones y Feedbacks en la Página Misma:** Un mecanismo a través del cual los usuarios puedan resaltar texto y hacer clic en "Enviar Corrección", lo que generaría un ticket de forma automática con la página, la configuración regional y el párrafo exacto con problemas.
+* **Comentarios de la Comunidad:** Añadir secciones de comentarios a nivel de página (como la documentación tradicional de PHP) para obtener soporte inmediato (peer-to-peer) entre desarrolladores.
+* **Desplazamiento Inteligente de la Interfaz:** Desplazar automáticamente la barra lateral de la vista cuando el usuario haya saltado a una página profundamente anidada tras realizar una búsqueda o seguir un enlace directo.
+* **Filtros de Búsqueda Avanzados:** Implementar los excelentes y granulares filtros de búsqueda que actualmente existen en la documentación original de Azion.
+* **Un Mayor Enfoque en Casos de Reutilización:** Guías especializadas sobre cómo deberían compartir y reutilizar correctamente las funciones e instancias a lo largo de las aplicaciones.
+* **Vitrina y Recompensas Públicas:** Un lugar donde se expongan los proyectos destacados de la comunidad, así como botones/créditos (badges) para incentivar más contribuciones de la comunidad.
+* **Auditorías de Accesibilidad y un Excelente Contraste de Colores:** Garantir siempre niveles perfectos de contraste de colores y agregar las etiquetas ARIA correctamente para asistir a los desarrolladores ciegos o con capacidades reducidas.
+* **Diagramas Mantenibles:** Volver a generar diagramas para poder separar sus aspectos de texto general y aislar solo su componente gráfico; reduciendo dependencias directas de herramientas de IA.
+* **Más Configuración Regional:** Expandir la cantidad de idiomas a los que llega la plataforma para facilitar en gran modo la democratización del acceso.
 * **Inclusión Universal: Múltiples expansiones de localizaciones y configuraciones regionales completas para accesibilidad a nuevos idiomas sin limites geográficos.**
